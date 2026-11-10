@@ -1,0 +1,37 @@
+# Verifier-accuracy benchmark report
+
+> SYNTHETIC DATA: all apps, defects and results are invented for benchmarking. No real e2e framework code is called or imported.
+
+| Metric | careful | sloppy |
+|---|---|---|
+| Defect detection rate (recall) | 100.0% | 12.5% |
+| False-pass rate (missed defects) | 0.0% | 87.5% |
+| False-fail rate (clean apps flagged) | 0.0% | 25.0% |
+| Traceability rate | 100.0% | 66.7% |
+| Defects detected | 8/8 | 1/8 |
+| Clean apps flagged | 0/4 | 1/4 |
+| Check coverage | 100.0% | 61.0% |
+
+## Per-defect-class detection
+
+| Defect class | careful | sloppy |
+|---|---|---|
+| broken_mobile_nav | 1/1 | 0/1 |
+| broken_submit_handler | 1/1 | 1/1 |
+| duplicate_charge_double_click | 1/1 | 0/1 |
+| missing_auth_redirect | 1/1 | 0/1 |
+| off_by_one_pagination | 1/1 | 0/1 |
+| stale_data_after_save | 1/1 | 0/1 |
+| timezone_shifted_date | 1/1 | 0/1 |
+| wrong_cart_total | 1/1 | 0/1 |
+
+## Check-level confusion (checks the verifier ran)
+
+| Verifier | TP | FP | FN | TN | not run | accuracy |
+|---|---|---|---|---|---|---|
+| careful | 9 | 0 | 0 | 50 | 0 | 100.0% |
+| sloppy | 1 | 1 | 0 | 34 | 23 | 97.2% |
+
+Note: the reference verifiers were written against this dataset, so scores validate the harness, not any real verifier.
+
+Wrote out/report.md and out/report.json
